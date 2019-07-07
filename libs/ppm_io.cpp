@@ -100,7 +100,18 @@ int PPM::load(const uint8_t * buffer, const int h, const int w, const int max, c
     mMagic = magic;
     mBuffer = new uint8_t[w * h * 3];
     std::memcpy(mBuffer, buffer, w * h * 3 * sizeof(uint8_t));
+}
 
+void PPM::setBinary(const bool isBinary)
+{
+    if (isBinary == false)
+    {
+        mMagic = "P3";
+    }
+    else
+    {
+        mMagic = "P6";
+    }
 }
 
 

@@ -31,6 +31,8 @@ public:
     int getW() const;
     int getMax() const;
     uint8_t * getImageHandler() const;
+    // Set magic to P3 (false) or P6 (true)
+    void setBinary(const bool isBinary);
 private:
     std::string mMagic, mFilepath;
     int mH, mW, mMax;

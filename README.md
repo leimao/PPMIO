@@ -57,7 +57,9 @@ status = ppmIn.read(inFilepath);
 ```cpp
 PPM ppmOut = ppmIn;
 std::string outFilepath = './imageOut.ppm'
-status = ppmIn.write(outFilepath);
+// Switch between P3 and P6
+ppmOut.setBinary(true);
+status = ppmOut.write(outFilepath);
 ```
 
 ### Get Image Data
