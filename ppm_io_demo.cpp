@@ -46,5 +46,17 @@ int main(int argc, char ** argv)
     }
     std::cout << "Writing PPM image successful." << std::endl;
 
+    // Check Equivalence
+    PPM ppmIn2(argv[2]);
+
+    if (ppmIn == ppmIn2)
+    {
+        std::cout << "PPM image in and out are the same." << std::endl;
+    }
+    else
+    {
+        std::cout << "PPM image in and out are not the same!" << std::endl;
+    }
+    
     return 0;
 }

@@ -18,6 +18,9 @@ public:
     // Assign operator
     // Assign one PPM instance to another
     PPM & operator = (const PPM & ppm);
+    // Equal operator
+    // Check if two PPM instances are equivalent
+    bool operator == (const PPM & ppm) const;
     // Read PPM from file
     int read(const std::string & filepath);
     // Save PPM to file

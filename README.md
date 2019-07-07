@@ -82,82 +82,89 @@ Please check the header file `ppm_io.h`.
 
 ### Read and Write PPM Image
 
-`giraffe.ppm` is `P3` PPM and `kangaroo.ppm` is a `P6` PPM.
+`giraffe_p3.ppm` and `portrait_p3_comment.ppm` are `P3` PPM,  and `kangaroo_p6.ppm` and `water-mill_p6_comment.ppm` are a `P6` PPM. In addition, `portrait_p3_comment.ppm` and `water-mill_p6_comment.ppm` contain addition comments in PPM file.
+
+PPM images were read, saved and checked equivalence of input and output to make sure the library works correctly.
 
 ```bash
 $ mkdir -p build
 $ cd build
 $ cmake ..
 $ make
-$ ./ppm_io_demo ../samples/giraffe.ppm ../samples/giraffe_replicated.ppm
-Reading PPM images from ../samples/giraffe.ppm...
+$ ./ppm_io_demo ../samples/giraffe_p3.ppm ../samples/giraffe_p3_replicated.ppm 
+Reading PPM images from ../samples/giraffe_p3.ppm...
 Reading PPM image successful.
 Testing copy constructor......
-Writing PPM images to ../samples/giraffe_replicated.ppm...
+Writing PPM images to ../samples/giraffe_p3_replicated.ppm...
 Writing PPM image successful.
 Testing assign operator...
-Writing PPM images to ../samples/giraffe_replicated.ppm...
+Writing PPM images to ../samples/giraffe_p3_replicated.ppm...
 Writing PPM image successful.
-$ ./ppm_io_demo ../samples/kangaroo.ppm ../samples/kangaroo_replicated.ppm
-Reading PPM images from ../samples/kangaroo.ppm...
+PPM image in and out are the same.
+
+$ ./ppm_io_demo ../samples/kangaroo_p6.ppm ../samples/kangaroo_p6_replicated.ppm 
+Reading PPM images from ../samples/kangaroo_p6.ppm...
 Reading PPM image successful.
 Testing copy constructor......
-Writing PPM images to ../samples/kangaroo_replicated.ppm...
+Writing PPM images to ../samples/kangaroo_p6_replicated.ppm...
 Writing PPM image successful.
 Testing assign operator...
-Writing PPM images to ../samples/kangaroo_replicated.ppm...
+Writing PPM images to ../samples/kangaroo_p6_replicated.ppm...
 Writing PPM image successful.
+PPM image in and out are the same.
+
+
+$ ./ppm_io_demo ../samples/portrait_p3_comment.ppm ../samples/portrait_p3_comment_replicated.ppm 
+Reading PPM images from ../samples/portrait_p3_comment.ppm...
+Reading PPM image successful.
+Testing copy constructor......
+Writing PPM images to ../samples/portrait_p3_comment_replicated.ppm...
+Writing PPM image successful.
+Testing assign operator...
+Writing PPM images to ../samples/portrait_p3_comment_replicated.ppm...
+Writing PPM image successful.
+PPM image in and out are the same.
+
+$ ./ppm_io_demo ../samples/water-mill_p6_comment.ppm ../samples/water-mill_p6_comment_replicated.ppm
+Reading PPM images from ../samples/water-mill_p6_comment.ppm...
+Reading PPM image successful.
+Testing copy constructor......
+Writing PPM images to ../samples/water-mill_p6_comment_replicated.ppm...
+Writing PPM image successful.
+Testing assign operator...
+Writing PPM images to ../samples/water-mill_p6_comment_replicated.ppm...
+Writing PPM image successful.
+PPM image in and out are the same.
+
 ```
 
 ### Memory Leak Test
 
-Additionally, Valgrind was employed to verify that there is no memory leak issue.
+Additionally, all the runtimes above have passed Valgrind memory leak check. For example
 
 ```bash
-$ valgrind --leak-check=yes ./ppm_io_demo ../samples/giraffe.ppm ../samples/giraffe_replicated.ppm
-==701== Memcheck, a memory error detector
-==701== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==701== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==701== Command: ./ppm_io_demo ../samples/giraffe.ppm ../samples/giraffe_replicated.ppm
-==701== 
-Reading PPM images from ../samples/giraffe.ppm...
+$ valgrind --leak-check=yes ./ppm_io_demo ../samples/water-mill_p6_comment.ppm ../samples/water-mill_p6_comment_replicated.ppm
+==19759== Memcheck, a memory error detector
+==19759== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19759== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==19759== Command: ./ppm_io_demo ../samples/water-mill_p6_comment.ppm ../samples/water-mill_p6_comment_replicated.ppm
+==19759== 
+Reading PPM images from ../samples/water-mill_p6_comment.ppm...
 Reading PPM image successful.
 Testing copy constructor......
-Writing PPM images to ../samples/giraffe_replicated.ppm...
+Writing PPM images to ../samples/water-mill_p6_comment_replicated.ppm...
 Writing PPM image successful.
 Testing assign operator...
-Writing PPM images to ../samples/giraffe_replicated.ppm...
+Writing PPM images to ../samples/water-mill_p6_comment_replicated.ppm...
 Writing PPM image successful.
-==701== 
-==701== HEAP SUMMARY:
-==701==     in use at exit: 0 bytes in 0 blocks
-==701==   total heap usage: 17 allocs, 17 frees, 2,479,008 bytes allocated
-==701== 
-==701== All heap blocks were freed -- no leaks are possible
-==701== 
-==701== For counts of detected and suppressed errors, rerun with: -v
-==701== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-$ valgrind --leak-check=yes ./ppm_io_demo ../samples/kangaroo.ppm ../samples/kangaroo_replicated.ppm
-==621== Memcheck, a memory error detector
-==621== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==621== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==621== Command: ./ppm_io_demo ../samples/kangaroo.ppm ../samples/kangaroo_replicated.ppm
-==621== 
-Reading PPM images from ../samples/kangaroo.ppm...
-Reading PPM image successful.
-Testing copy constructor......
-Writing PPM images to ../samples/kangaroo_replicated.ppm...
-Writing PPM image successful.
-Testing assign operator...
-Writing PPM images to ../samples/kangaroo_replicated.ppm...
-Writing PPM image successful.
-==621== 
-==621== HEAP SUMMARY:
-==621==     in use at exit: 0 bytes in 0 blocks
-==621==   total heap usage: 17 allocs, 17 frees, 2,553,893 bytes allocated
-==621== 
-==621== All heap blocks were freed -- no leaks are possible
-==621== 
-==621== For counts of detected and suppressed errors, rerun with: -v
-==621== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+PPM image in and out are the same.
+==19759== 
+==19759== HEAP SUMMARY:
+==19759==     in use at exit: 0 bytes in 0 blocks
+==19759==   total heap usage: 22 allocs, 22 frees, 2,873,844 bytes allocated
+==19759== 
+==19759== All heap blocks were freed -- no leaks are possible
+==19759== 
+==19759== For counts of detected and suppressed errors, rerun with: -v
+==19759== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```

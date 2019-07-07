@@ -16,10 +16,28 @@ int PPM::read(const std::string & filepath)
         return 1;
     }
 
-    infile >> mMagic >> mW >> mH >> mMax;
+    infile >> mMagic;
+    infile.seekg(1, infile.cur);
+    char c;
+    infile.get(c);
+    if (c == '#')
+    {
+        // We got comments in the PPM image and skip the comments
+        while (c != '\n')
+        {
+            infile.get(c);
+        }
+    }
+    else
+    {
+        infile.seekg(-1, infile.cur);
+    }
+    
+    infile >> mW >> mH >> mMax;
     if (mMax != 255)
     {
         std::cout << "Failed to read " << filepath << std::endl;
+        std::cout << "Got PPM maximum value: " << mMax << std::endl;
         std::cout << "Maximum pixel has to be 255" << std::endl;
         return 1;
     }
@@ -36,6 +54,7 @@ int PPM::read(const std::string & filepath)
             mBuffer[i] = static_cast<uint8_t> (std::stoi(pixel_str));
         }
     }
+    // Binary
     else if (mMagic == "P6")
     {
         // Move curser once to skip '\n'
@@ -161,7 +180,26 @@ PPM & PPM::operator = (const PPM & ppm)
     load(buffer, h, w, max, magic);
 }
 
-
+bool PPM::operator == (const PPM & ppm) const
+{
+    if ((mH == ppm.getH()) && (mW == ppm.getW()) && (mMax == ppm.getMax()))
+    {
+        for (int i = 0; i < mH * mW * 3; i ++)
+        {
+            uint8_t * buffer = ppm.getImageHandler();
+            if (mBuffer[i] != buffer[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
+}
 
 PPM::~PPM()
 {
