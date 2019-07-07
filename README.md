@@ -74,13 +74,6 @@ Writing PPM images to ../samples/kangaroo_replicated.ppm...
 Writing PPM image successful.
 ```
 
-| PPM Input | PPM Output | 
-|:-------------------------:|:-------------------------:|
-|![](samples/giraffe.ppm) | ![](samples/giraffe_replicated.ppm) | 
-|![](samples/kangaroo.ppm) | ![](samples/kangaroo_replicated.ppm) | 
-
-
-
 ## Memory Leak Test
 
 Additionally, Valgrind was employed to verify that there is no memory leak issue.
