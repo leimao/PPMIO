@@ -99,7 +99,7 @@ Writing PPM images to ../samples/kangaroo_replicated.ppm...
 Writing PPM image successful.
 ```
 
-## Memory Leak Test
+### Memory Leak Test
 
 Additionally, Valgrind was employed to verify that there is no memory leak issue.
 
