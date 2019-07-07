@@ -14,6 +14,29 @@ PPMIO is a simple PPM image C++ I/O library that does not rely on any non-standa
 * CMake 3.0.0+
 * Valgrind 3.13.0 (Optional)
 
+## Files
+
+```
+.
+├── CMakeLists.txt
+├── libs
+│   ├── CMakeLists.txt
+│   ├── ppm_io.cpp
+│   └── ppm_io.h
+├── LICENSE.md
+├── ppm_io_demo.cpp
+├── README.md
+└── samples
+    ├── giraffe.jpg
+    ├── giraffe.ppm
+    ├── giraffe_replicated.ppm
+    ├── kangaroo.jpg
+    ├── kangaroo.ppm
+    ├── kangaroo_replicated.ppm
+    └── README.md
+```
+
+
 ## Usages
 
 ### Read PPM Image From File
