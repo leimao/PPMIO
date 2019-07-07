@@ -98,6 +98,11 @@ int PPM::load(const uint8_t * buffer, const int h, const int w, const int max, c
     mW = w;
     mMax = max;
     mMagic = magic;
+    if (mBuffer != nullptr)
+    {
+        delete [] mBuffer;
+        mBuffer = nullptr;
+    }
     mBuffer = new uint8_t[w * h * 3];
     std::memcpy(mBuffer, buffer, w * h * 3 * sizeof(uint8_t));
 }
@@ -145,6 +150,7 @@ PPM & PPM::operator = (const PPM & ppm)
     if (mBuffer != nullptr)
     {
         delete [] mBuffer;
+        mBuffer = nullptr;
     }
     std::string magic = ppm.getMagic();
     std::string filepath = ppm.getFilepath();
