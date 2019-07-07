@@ -48,8 +48,16 @@ The library will automatically determine if the PPM image is `P3` ASCII or `P6` 
 
 PPM ppmIn;
 int status;
-std::string filepath = './image.ppm'
-status = ppmIn.read(filepath);
+std::string inFilepath = './imageIn.ppm'
+status = ppmIn.read(inFilepath);
+```
+
+### Save PPM Image to File
+
+```cpp
+PPM ppmOut = ppmIn;
+std::string outFilepath = './imageOut.ppm'
+status = ppmIn.write(outFilepath);
 ```
 
 ### Get Image Data
