@@ -44,6 +44,8 @@ PPMIO is a simple PPM image C++ I/O library that does not rely on any non-standa
 The library will automatically determine if the PPM image is `P3` ASCII or `P6` binary. The method returns 0 if successful, 1 if not. The library only supports PPM RGB images whose pixel scale is 0 to 255.
 
 ```cpp
+#include "ppm_io.h"
+
 PPM ppmIn;
 int status;
 std::string filepath = './image.ppm'
