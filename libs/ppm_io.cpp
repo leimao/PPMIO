@@ -178,6 +178,7 @@ PPM & PPM::operator = (const PPM & ppm)
     int max = ppm.getMax();
     uint8_t * buffer = ppm.getImageHandler();
     load(buffer, h, w, max, magic);
+    return *this;
 }
 
 bool PPM::operator == (const PPM & ppm) const
