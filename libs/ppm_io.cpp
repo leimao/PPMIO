@@ -111,7 +111,7 @@ int PPM::write(const std::string & filepath) const
     return 0;
 }
 
-int PPM::load(const uint8_t * buffer, const int h, const int w, const int max, const std::string magic)
+void PPM::load(const uint8_t * buffer, const int h, const int w, const int max, const std::string magic)
 {
     mH = h;
     mW = w;
@@ -178,6 +178,7 @@ PPM & PPM::operator = (const PPM & ppm)
     int max = ppm.getMax();
     uint8_t * buffer = ppm.getImageHandler();
     load(buffer, h, w, max, magic);
+    return *this;
 }
 
 bool PPM::operator == (const PPM & ppm) const

@@ -26,7 +26,7 @@ public:
     // Save PPM to file
     int write(const std::string & filepath) const;
     // Load array as PPM
-    int load(const uint8_t * buffer, const int h, const int w, const int max, const std::string magic);
+    void load(const uint8_t * buffer, const int h, const int w, const int max, const std::string magic);
     // Get attributes
     std::string getMagic() const;
     std::string getFilepath() const;
